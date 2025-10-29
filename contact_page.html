@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Orivine Events — Contact</title>
+  <style>
+    :root{
+      --bg:#fff;
+      --accent:#bfa6a6;
+      --text:#333;
+      --muted:#9b8b8b;
+      --card:#fff;
+      --shadow: 0 6px 20px rgba(0,0,0,0.06);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(180deg,#fff 0%, #fbfbfb 100%);
+      color:var(--text);
+      padding:24px;
+    }
+    .card{
+      width:100%;
+      max-width:900px;
+      background:var(--card);
+      border-radius:14px;
+      box-shadow:var(--shadow);
+      padding:28px;
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:22px;
+      align-items:start;
+    }
+    .brand{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:8px;
+    }
+    .logo{
+      width:64px;height:64px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#f4dede);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:white;
+      font-size:22px;
+    }
+    h1{ margin:0;font-size:20px; }
+    p.lead{ margin:6px 0 18px;color:var(--muted); }
+    .info{ display:flex;flex-direction:column;gap:10px; }
+    .info .row{ display:flex;gap:12px;align-items:center; }
+    .icon{
+      width:36px;height:36px;border-radius:8px;background:#fff;border:1px solid #f0e9e9;
+      display:inline-flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);
+      font-size:18px;
+    }
+    .field{ display:flex;flex-direction:column; }
+    .label{ font-size:12px;color:var(--muted); }
+    .value{ font-size:16px;font-weight:600; }
+    .right{
+      padding:8px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-start;
+      border-left:1px dashed #f0e6e6;
+    }
+    .qr{
+      background:#fff;padding:10px;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,0.05);
+    }
+    .btn{
+      display:inline-block;padding:10px 14px;border-radius:8px;background:var(--accent);color:white;font-weight:700;text-decoration:none;
+      box-shadow:0 6px 14px rgba(191,166,166,0.12);
+    }
+    small.note{ display:block;color:var(--muted); margin-top:8px; font-size:12px; text-align:center; }
+    @media (max-width:820px){
+      .card{ grid-template-columns: 1fr; }
+      .right{ border-left: none; border-top:1px dashed #f0e6e6; padding-top:16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div>
+      <div class="brand">
+        <div class="logo">OE</div>
+        <div>
+          <h1>Orivine Events</h1>
+          <p class="lead">Event planning • Contact & bookings</p>
+        </div>
+      </div>
+
+      <div class="info" aria-label="Contact information">
+        <div class="row">
+          <div class="icon">📞</div>
+          <div class="field">
+            <span class="label">Phone</span>
+            <span class="value" id="phone">+961 76 803 329</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="icon">📍</div>
+          <div class="field">
+            <span class="label">Location</span>
+            <span class="value" id="location">Zalka, bldg. khousoub 1st Flr</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="icon">✉️</div>
+          <div class="field">
+            <span class="label">Email</span>
+            <a class="value" id="email" href="mailto:orivinecompany@gmail.com">orivinecompany@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="icon">🌐</div>
+          <div class="field">
+            <span class="label">Website</span>
+            <a class="value" id="website" href="https://www.orivineevents.com" target="_blank">www.Orivineevents.com</a>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;">
+          <a class="btn" id="callBtn" href="tel:+96176803329">Call now</a>
+          <a class="btn" style="background:#2d9cdb; margin-left:10px;" id="emailBtn" href="mailto:orivinecompany@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div style="text-align:center;">
+        <div style="font-weight:700;margin-bottom:8px;">QR to page (scan after hosting)</div>
+        <div class="qr" id="qrPageContainer">
+          <img id="qrPage" alt="QR that links to this page" width="220" height="220">
+        </div>
+        <small class="note">Host this file somewhere (GitHub Pages, Netlify, or your server). The QR above will point to the page URL when hosted.</small>
+      </div>
+
+      <div style="text-align:center;margin-top:12px;">
+        <div style="font-weight:700;margin-bottom:8px;">QR to save contact</div>
+        <div class="qr" id="qrVcardContainer">
+          <img id="qrVcard" alt="QR that contains vCard" width="220" height="220">
+        </div>
+        <small class="note">Scan to add contact directly to a phone (vCard).</small>
+      </div>
+
+      <div style="margin-top:10px;text-align:center;">
+        <button class="btn" id="regenBtn">Regenerate QR (if you move file)</button>
+        <div style="margin-top:8px;font-size:12px;color:var(--muted)">Tip: host this file publicly, then click "Regenerate" and copy the page URL into the prompt.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- contact data (edit here if needed) ---
+    const contact = {
+      name: "Orivine Events",
+      phone: "+96176803329",   // tel link uses digits only
+      displayPhone: "+961 76 803 329",
+      email: "orivinecompany@gmail.com",
+      location: "Zalka, bldg. khousoub 1st Flr",
+      website: "https://www.orivineevents.com"
+    };
+
+    // fill fields
+    document.getElementById('phone').textContent = contact.displayPhone;
+    document.getElementById('location').textContent = contact.location;
+    document.getElementById('email').textContent = contact.email;
+    document.getElementById('email').href = 'mailto:' + contact.email;
+    document.getElementById('website').textContent = contact.website.replace(/^https?:\/\//,'');
+    document.getElementById('website').href = contact.website;
+    document.getElementById('callBtn').href = 'tel:' + contact.phone;
+
+    // Helper: generate a QR image using Google Chart API
+    // urlToEncode: string to encode in QR
+    // size: px
+    function googleQrDataUrl(urlToEncode, size=300){
+      // Google Chart API QR generator (public)
+      // Note: this makes an image request to Google when the page loads
+      // Example: https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=ENCODED
+      const base = 'https://chart.googleapis.com/chart';
+      const params = new URLSearchParams({
+        chs: `${size}x${size}`,
+        cht: 'qr',
+        chl: urlToEncode,
+        choe: 'UTF-8'
+      });
+      return base + '?' + params.toString();
+    }
+
+    // Generate vCard text
+    function vcardText(){
+      // Simple vCard 3.0
+      const name = contact.name;
+      const phone = contact.phone;
+      const email = contact.email;
+      const adr = contact.location.replace(/\\n/g,';');
+      const lines = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "FN:" + name,
+        "ORG:" + name,
+        "TEL;TYPE=WORK,VOICE:" + phone,
+        "EMAIL:" + email,
+        "ADR;TYPE=WORK:;" + adr,
+        "URL:" + contact.website,
+        "END:VCARD"
+      ];
+      return lines.join('\\n');
+    }
+
+    // When page loads, generate QR images:
+    function generateDefaultQRCodes(){
+      // QR that links to the page URL (if hosted). If opened locally (file://), we'll default to website.
+      let href = window.location.href;
+      if(href.startsWith('file://') || href.includes('localhost') || href.includes('127.0.0.1')){
+        // local file: default to the official website so that scanning works immediately
+        href = contact.website;
+      }
+
+      // assign QR images
+      document.getElementById('qrPage').src = googleQrDataUrl(href, 440);
+      document.getElementById('qrPage').alt = "QR linking to " + href;
+
+      // vCard
+      const v = vcardText();
+      document.getElementById('qrVcard').src = googleQrDataUrl(v, 440);
+      document.getElementById('qrVcard').alt = "QR containing vCard for " + contact.name;
+    }
+
+    // Allow user to enter a public URL to regenerate the "page" QR
+    document.getElementById('regenBtn').addEventListener('click', () => {
+      const userUrl = prompt("If you will host this file publicly, paste the public URL here (e.g. https://yourdomain.com/contact_page.html). Leave empty to use the detected page URL or the website domain:");
+      if(userUrl === null) return;
+      const target = userUrl.trim() || window.location.href || contact.website;
+      // if local, fallback
+      const useTarget = (target.startsWith('http://') || target.startsWith('https://')) ? target : contact.website;
+      document.getElementById('qrPage').src = googleQrDataUrl(useTarget, 440);
+      alert("QR regenerated to point to: " + useTarget + "\\nNow you can scan it with your phone (from another device) or save the image.");
+    });
+
+    // initial generate
+    generateDefaultQRCodes();
+  </script>
+</body>
+</html>
